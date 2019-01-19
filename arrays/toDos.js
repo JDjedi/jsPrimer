@@ -1,24 +1,24 @@
 
 
 const toDos = [{
-    task: 'Order cat food',
-    completion: false
-  }, {
-    task: 'Workout',
-    completion: false
-  }, {
-    task: "Study code",
-    completion: false
-  }, {
-    task: "Go to Work",
-    completion:  false
-  }, {
-    task: "Sleep",
-    completion: false
-  }]
+  task: 'Order cat food',
+  completion: false
+}, {
+  task: 'Workout',
+  completion: false
+}, {
+  task: "Study code",
+  completion: false
+}, {
+  task: "Go to Work",
+  completion: false
+}, {
+  task: "Sleep",
+  completion: false
+}]
 
-const checkNote = function(toDosList, noteToCheckOff) {
-  const index = toDosList.findIndex(function(note, index) {
+const checkNote = function (toDosList, noteToCheckOff) {
+  const index = toDosList.findIndex(function (note, index) {
     return note.task.toLowerCase() === noteToCheckOff.toLowerCase()
   })
 
@@ -32,8 +32,8 @@ const checkNote = function(toDosList, noteToCheckOff) {
   }
 }
 
-const deleteNote = function(toDosList, toDoTask) {
-  const index = toDosList.findIndex(function(note, index) {
+const deleteNote = function (toDosList, toDoTask) {
+  const index = toDosList.findIndex(function (note, index) {
     return note.task.toLowerCase() === toDoTask.toLowerCase() // .toLowerCase would not work here for some reason
   })
   console.log("\n") // used for clarity between the diff outputs
@@ -45,31 +45,31 @@ const deleteNote = function(toDosList, toDoTask) {
     console.log('The Element you wish to delete is not located in this array')
   }
 }
-  
-const addNote = function(toDosList, noteToAdd) {
-  toDosList.push({task: noteToAdd, completion: false})
+
+const addNote = function (toDosList, noteToAdd) {
+  toDosList.push({ task: noteToAdd, completion: false })
   console.log("\n") // used for clarity between the diff outputs
   return toDosList
 }
 
-const searchNotes = function(toDosList, searchQuery) {
+const searchNotes = function (toDosList, searchQuery) {
   console.log("\n") // used for clarity between the diff outputs
-  return toDosList.filter(function(notes, index) { // returns 1 or 0, true or false, for each object
+  return toDosList.filter(function (notes, index) { // returns 1 or 0, true or false, for each object
     return notes.completion === searchQuery
   })
 }
 
-const sortNotes = function(toDosList) {
-  toDosList.sort(function(a, b) {
-//    return -1 // returns a first!
-//    return 1 // returns b first!
-//    return 0 // order does not need to be changes
+const sortNotes = function (toDosList) {
+  toDosList.sort(function (a, b) {
+    //    return -1 // returns a first!
+    //    return 1 // returns b first!
+    //    return 0 // order does not need to be changes
     if (a.completion < b.completion) {
-        return -1
+      return -1
     } else if (b.completion < a.completion) {
-        return 1
+      return 1
     } else {
-        return 0
+      return 0
     }
   })
 }
