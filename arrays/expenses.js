@@ -1,5 +1,3 @@
-
-
 const account = {
   name: "Thor",
   ledger: [],
