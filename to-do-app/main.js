@@ -19,6 +19,7 @@ const toDos = [
     task: "Sleep",
     completion: true
   }
+
 ];
 
 const filters = {
@@ -30,7 +31,13 @@ const renderToDos = function(Todos, filters) {
     return toDo.task.toLowerCase().includes(filters.searchText.toLowerCase());
   });
 
-  console.log(filteredTodos)
+  document.querySelector("#toDos").innerHTML = ''
+
+  filteredTodos.forEach(function(toDos) {
+    const toDosElem = document.createElement('p')
+    toDosElem.textContent = toDos.task 
+    document.querySelector("#toDos").appendChild(toDosElem)
+  })
 };
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
@@ -38,7 +45,9 @@ document.querySelector("#search-text").addEventListener("input", function(e) {
     let newBogie = document.createElement("img");
     newBogie.src =
       "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
-    document.querySelector("body").appendChild(newBogie);
+    newBogie.setAttribute("height", "85%");
+    newBogie.setAttribute("width", "85%");
+    document.querySelector("#toDos").appendChild(newBogie);
   } else {
     filters.searchText = e.target.value;
     renderToDos(toDos, filters);
