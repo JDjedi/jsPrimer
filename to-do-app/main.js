@@ -19,7 +19,6 @@ const toDos = [
     task: "Sleep",
     completion: true
   }
-
 ];
 
 const filters = {
@@ -31,13 +30,14 @@ const renderToDos = function(Todos, filters) {
     return toDo.task.toLowerCase().includes(filters.searchText.toLowerCase());
   });
 
-  document.querySelector("#toDos").innerHTML = ''
+  document.querySelector("#toDos").innerHTML = ""; // this clears the div after every subsquent key stroke
 
   filteredTodos.forEach(function(toDos) {
-    const toDosElem = document.createElement('p')
-    toDosElem.textContent = toDos.task 
-    document.querySelector("#toDos").appendChild(toDosElem)
-  })
+    // the last item you search that matches shows, the previous line of code cuts out what is unecessary
+    const toDosElem = document.createElement("p");
+    toDosElem.textContent = toDos.task;
+    document.querySelector("#toDos").appendChild(toDosElem);
+  });
 };
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
@@ -60,44 +60,48 @@ document
     document.querySelectorAll("p").forEach(function(toDo) {
       toDo.remove();
     });
+    const img = document.querySelector("img")
+    img.remove()
   });
 
-document
-  .querySelector("#sort-todos-button")
-  .addEventListener("click", function() {
-    toDos.sort(function(a, b) {
-      //    return -1 // returns a first!
-      //    return 1 // returns b first!
-      //    return 0 // order does not need to be changes
-      if (a.completion < b.completion) {
-        return -1;
-      } else if (b.completion < a.completion) {
-        return 1;
-      } else {
-        return 0;
-      }
-    });
 
-    const newParagraph = document.querySelector("p"); // querySelector() used for id's primarily
-    newParagraph.textContent = "List sorted! Also, I love Marielle Tovar!";
-  });
+// **************************************** old functionality ****************************************
 
-document
-  .querySelector("#show-todos-button")
-  .addEventListener("click", function() {
-    toDos.forEach(function(post) {
-      // dont need to pass in the list as an argument bc the scoping rules allow you to grab the list from the global scope
-      if (post.completion == false) {
-        let newParagraph = document.createElement("p");
-        newParagraph.textContent = post.task;
-        document.querySelector("body").appendChild(newParagraph);
-      }
-    });
-  });
+
+// document
+//   .querySelector("#sort-todos-button")
+//   .addEventListener("click", function() {
+//     toDos.sort(function(a, b) {
+//       //    return -1 // returns a first!
+//       //    return 1 // returns b first!
+//       //    return 0 // order does not need to be changes
+//       if (a.completion < b.completion) {
+//         return -1;
+//       } else if (b.completion < a.completion) {
+//         return 1;
+//       } else {
+//         return 0;
+//       }
+//     });
+
+//     const newParagraph = document.querySelector("p"); // querySelector() used for id's primarily
+//     newParagraph.textContent = "List sorted! Also, I love Marielle Tovar!";
+//   });
+
+// document
+//   .querySelector("#show-todos-button")
+//   .addEventListener("click", function() {
+//     toDos.forEach(function(post) {
+//       // dont need to pass in the list as an argument bc the scoping rules allow you to grab the list from the global scope
+//       if (post.completion == false) {
+//         let newParagraph = document.createElement("p");
+//         newParagraph.textContent = post.task;
+//         document.querySelector("body").appendChild(newParagraph);
+//       }
+//     });
+//   });
 
 // console.log(toDos)
-//
-// old functionality
 // const ps = document.querySelectorAll('p')
 
 // ps.forEach(function (p) {
