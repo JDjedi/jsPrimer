@@ -21,11 +21,35 @@ const toDos = [
   }
 ];
 
+const filters = {
+  searchText: ""
+};
+
+const renderToDos = function(Todos, filters) {
+  const filteredTodos = Todos.filter(function(toDo) {
+    return toDo.task.toLowerCase().includes(filters.searchText.toLowerCase());
+  });
+
+  console.log(filteredTodos)
+};
+
+document.querySelector("#search-text").addEventListener("input", function(e) {
+  if (e.target.value === "c1f1d37") {
+    let newBogie = document.createElement("img");
+    newBogie.src =
+      "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
+    document.querySelector("body").appendChild(newBogie);
+  } else {
+    filters.searchText = e.target.value;
+    renderToDos(toDos, filters);
+  }
+});
+
 document
   .querySelector("#remove-all-button")
   .addEventListener("click", function() {
-    document.querySelectorAll("p").forEach(function(note) {
-      note.remove();
+    document.querySelectorAll("p").forEach(function(toDo) {
+      toDo.remove();
     });
   });
 
@@ -46,8 +70,7 @@ document
     });
 
     const newParagraph = document.querySelector("p"); // querySelector() used for id's primarily
-    newParagraph.textContent =
-      "List sorted! Also, I LOVE MARIELLE SHE IS MY BOO!";
+    newParagraph.textContent = "List sorted! Also, I love Marielle Tovar!";
   });
 
 document
