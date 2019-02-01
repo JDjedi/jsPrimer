@@ -22,7 +22,8 @@ const toDos = [
 ];
 
 const filters = {
-  searchText: ""
+  searchText: "",
+  hideFilter: false
 };
 
 const renderToDos = function(Todos, filters) {
@@ -77,6 +78,9 @@ document
     renderToDos(toDos, filters);
     event.target.elements.enterToDo.value = "";
   });
+
+
+renderToDos(toDos, filters);
 
 // **************************************** old functionality ****************************************
 
