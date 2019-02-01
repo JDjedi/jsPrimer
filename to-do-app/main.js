@@ -60,13 +60,25 @@ document
     document.querySelectorAll("p").forEach(function(toDo) {
       toDo.remove();
     });
-    const img = document.querySelector("img")
-    img.remove()
+    const img = document.querySelector("img");
+    if (img) {
+      img.remove();
+    }
   });
 
+document
+  .querySelector("#todo-form")
+  .addEventListener("submit", function(event) {
+    event.preventDefault();
+    toDos.push({
+      task: event.target.elements.enterToDo.value,
+      completion: false
+    });
+    renderToDos(toDos, filters);
+    event.target.elements.enterToDo.value = "";
+  });
 
 // **************************************** old functionality ****************************************
-
 
 // document
 //   .querySelector("#sort-todos-button")
@@ -87,6 +99,20 @@ document
 //     const newParagraph = document.querySelector("p"); // querySelector() used for id's primarily
 //     newParagraph.textContent = "List sorted! Also, I love Marielle Tovar!";
 //   });
+
+// document.querySelector("#search-text").addEventListener("input", function(e) {
+//   if (e.target.value === "c1f1d37") {
+//     let newBogie = document.createElement("img");
+//     newBogie.src =
+//       "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
+//     newBogie.setAttribute("height", "85%");
+//     newBogie.setAttribute("width", "85%");
+//     document.querySelector("#toDos").appendChild(newBogie);
+//   } else {
+//     filters.searchText = e.target.value;
+//     renderToDos(toDos, filters);
+//   }
+// });
 
 // document
 //   .querySelector("#show-todos-button")
