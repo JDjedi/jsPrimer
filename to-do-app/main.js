@@ -35,9 +35,17 @@ const renderToDos = function(Todos, filters) {
 
   filteredTodos.forEach(function(toDos) {
     // the last item you search that matches shows, the previous line of code cuts out what is unecessary
-    const toDosElem = document.createElement("p");
-    toDosElem.textContent = toDos.task;
-    document.querySelector("#toDos").appendChild(toDosElem);
+
+    const toDosLabel = document.createElement("label")
+    toDosLabel.setAttribute("id", `${toDos.task}`)
+
+    const toDosInput = document.createElement("input");
+    toDosInput.setAttribute("type", "checkbox")
+    toDosInput.value = toDos.task
+    
+    toDosLabel.innerHTML = toDos.task
+    document.querySelector("#toDos").appendChild(toDosLabel).appendChild(toDosInput);
+
   });
 };
 
@@ -46,8 +54,8 @@ document.querySelector("#search-text").addEventListener("input", function(e) {
     let newBogie = document.createElement("img");
     newBogie.src =
       "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
-    newBogie.setAttribute("height", "85%");
-    newBogie.setAttribute("width", "85%");
+    newBogie.setAttribute("height", "55%");
+    newBogie.setAttribute("width", "55%");
     document.querySelector("#toDos").appendChild(newBogie);
   } else {
     filters.searchText = e.target.value;
