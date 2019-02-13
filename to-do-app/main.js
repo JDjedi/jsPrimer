@@ -35,22 +35,25 @@ const renderToDos = function(Todos, filters) {
 
   filteredTodos.forEach(function(toDos) {
     // the last item you search that matches shows, the previous line of code cuts out what is unecessary
-    
-    if (toDos.completion = filters.hideFilter) {
-     const toDosElem = document.createElement("p");
-      toDosElem.textContent = toDos.task;
-      document.querySelector("#toDos").appendChild(toDosElem);  
+    if (filters.hideFilter == true) {
+      if (toDos.completion != filters.hideFilter) {
+        const toDosElem = document.createElement("p");
+         toDosElem.textContent = toDos.task;
+         document.querySelector("#toDos").appendChild(toDosElem); 
+      } else {
+        return
+      }
     } else {
-      const toDosElem = document.createElement("p");
-      toDosElem.textContent = toDos.task;
-      document.querySelector("#toDos").appendChild(toDosElem);  
+       const toDosElem = document.createElement("p");
+       toDosElem.textContent = toDos.task;
+       document.querySelector("#toDos").appendChild(toDosElem);  
     }
-  });
-};
+  })
+}
 
 document.querySelector("#hide-completed").addEventListener("change", function(e) {
   filters.hideFilter = e.target.checked
-
+  renderToDos(toDos, filters);
 })
 
 
@@ -58,10 +61,10 @@ document.querySelector("#hide-completed").addEventListener("change", function(e)
 document.querySelector("#search-text").addEventListener("input", function(e) {
   if (e.target.value === "c1f1d37") {
     let newBogie = document.createElement("img");
-    newBogie.src =
-      "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
-    newBogie.setAttribute("height", "55%");
-    newBogie.setAttribute("width", "55%");
+    // newBogie.src =
+    //   "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
+    // newBogie.setAttribute("height", "55%");
+    // newBogie.setAttribute("width", "55%");
     document.querySelector("#toDos").appendChild(newBogie);
   } else {
     filters.searchText = e.target.value;
