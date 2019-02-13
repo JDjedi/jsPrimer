@@ -23,7 +23,7 @@ const toDos = [
 
 const filters = {
   searchText: "",
-  hideFilter: false
+  hideFilter: null
 };
 
 const renderToDos = function(Todos, filters) {
@@ -35,19 +35,25 @@ const renderToDos = function(Todos, filters) {
 
   filteredTodos.forEach(function(toDos) {
     // the last item you search that matches shows, the previous line of code cuts out what is unecessary
-
-    const toDosLabel = document.createElement("label")
-    toDosLabel.setAttribute("id", `${toDos.task}`)
-
-    const toDosInput = document.createElement("input");
-    toDosInput.setAttribute("type", "checkbox")
-    toDosInput.value = toDos.task
     
-    toDosLabel.innerHTML = toDos.task
-    document.querySelector("#toDos").appendChild(toDosLabel).appendChild(toDosInput);
-
+    if (toDos.completion = filters.hideFilter) {
+     const toDosElem = document.createElement("p");
+      toDosElem.textContent = toDos.task;
+      document.querySelector("#toDos").appendChild(toDosElem);  
+    } else {
+      const toDosElem = document.createElement("p");
+      toDosElem.textContent = toDos.task;
+      document.querySelector("#toDos").appendChild(toDosElem);  
+    }
   });
 };
+
+document.querySelector("#hide-completed").addEventListener("change", function(e) {
+  filters.hideFilter = e.target.checked
+
+})
+
+
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
   if (e.target.value === "c1f1d37") {
