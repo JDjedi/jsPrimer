@@ -61,10 +61,10 @@ document.querySelector("#hide-completed").addEventListener("change", function(e)
 document.querySelector("#search-text").addEventListener("input", function(e) {
   if (e.target.value === "c1f1d37") {
     let newBogie = document.createElement("img");
-    // newBogie.src =
-    //   "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
-    // newBogie.setAttribute("height", "55%");
-    // newBogie.setAttribute("width", "55%");
+    //newBogie.src =
+    //  "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
+    newBogie.setAttribute("height", "55%");
+    newBogie.setAttribute("width", "55%");
     document.querySelector("#toDos").appendChild(newBogie);
   } else {
     filters.searchText = e.target.value;
