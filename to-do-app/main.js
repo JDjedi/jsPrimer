@@ -1,30 +1,16 @@
-const toDos = [
-  {
-    task: "Order cat food",
-    completion: false
-  },
-  {
-    task: "Workout",
-    completion: false
-  },
-  {
-    task: "Study code",
-    completion: true
-  },
-  {
-    task: "Go to Work",
-    completion: false
-  },
-  {
-    task: "Sleep",
-    completion: true
-  }
+let toDos = [
 ];
 
 const filters = {
   searchText: "",
   hideFilter: null
 };
+
+const toDosJSON = localStorage.getItem('toDos')
+
+if (toDosJSON !== null) {
+  toDos = JSON.parse(toDosJSON)
+}
 
 const renderToDos = function(Todos, filters) {
   const filteredTodos = Todos.filter(function(toDo) {
@@ -55,8 +41,6 @@ document.querySelector("#hide-completed").addEventListener("change", function(e)
   filters.hideFilter = e.target.checked
   renderToDos(toDos, filters);
 })
-
-
 
 document.querySelector("#search-text").addEventListener("input", function(e) {
   if (e.target.value === "c1f1d37") {
@@ -92,6 +76,7 @@ document
       task: event.target.elements.enterToDo.value,
       completion: false
     });
+    localStorage.setItem('toDos', JSON.stringify(toDos))
     renderToDos(toDos, filters);
     event.target.elements.enterToDo.value = "";
   });
