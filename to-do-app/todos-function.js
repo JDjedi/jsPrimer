@@ -1,4 +1,4 @@
-const renderInitialTodos = function() {
+const generateInitialDOM = function() {
   const toDosJSON = localStorage.getItem("toDos");
 
   if (toDosJSON !== null) {
@@ -26,24 +26,32 @@ const renderToDos = function(toDos, filters) {
     if (filters.hideFilter == true) {
       renderFilteredTodos(toDos);
     } else {
-      const toDosElem = document.createElement("p");
-      toDosElem.textContent = toDos.task;
-      document.querySelector("#toDos").appendChild(toDosElem);
+      renderTodosList(toDos);
     }
   });
 };
 
 const renderFilteredTodos = function(toDos) {
   if (toDos.completion != filters.hideFilter) {
-    const toDosElem = document.createElement("p");
-    toDosElem.textContent = toDos.task;
-    document.querySelector("#toDos").appendChild(toDosElem);
+    renderTodosList(toDos);
   } else {
     return;
   }
 };
 
-const submitTodos = function() {
+const renderTodosList = function(toDos) {
+  const toDosDiv = document.createElement("div");
+  const toDosElem = document.createElement("span");
+  const button = document.createElement("button");
+  button.textContent = "x"
+  toDosElem.textContent = toDos.task;
+  toDosDiv.appendChild(button);
+  toDosDiv.appendChild(toDosElem);
+  document.querySelector("#toDos").appendChild(toDosDiv)
+  return
+}
+
+const submitAndSaveTodos = function() {
   toDos.push({
     task: event.target.elements.enterToDo.value,
     completion: false
@@ -52,5 +60,5 @@ const submitTodos = function() {
 };
 
 seedTodos(toDos);
-renderInitialTodos();
+generateInitialDOM();
 renderToDos(toDos, filters);

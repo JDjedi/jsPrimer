@@ -42,7 +42,8 @@ document
   .querySelector("#todo-form")
   .addEventListener("submit", function(event) {
     event.preventDefault();
-    submitTodos();
+    submitAndSaveTodos();
     renderToDos(toDos, filters);
     event.target.elements.enterToDo.value = "";
   });
+
