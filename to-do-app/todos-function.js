@@ -9,6 +9,7 @@ const generateInitialDOM = function() {
 
 const seedTodos = function(toDos) {
   toDos.push({
+    id: uuidv4(),
     task: "Finish the fight - get into the tech industry.",
     completion: true
   });
@@ -43,16 +44,17 @@ const renderTodosList = function(toDos) {
   const toDosDiv = document.createElement("div");
   const toDosElem = document.createElement("span");
   const button = document.createElement("button");
-  button.textContent = "x"
+  button.textContent = "x";
   toDosElem.textContent = toDos.task;
   toDosDiv.appendChild(button);
   toDosDiv.appendChild(toDosElem);
-  document.querySelector("#toDos").appendChild(toDosDiv)
-  return
-}
+  document.querySelector("#toDos").appendChild(toDosDiv);
+  return;
+};
 
 const submitAndSaveTodos = function() {
   toDos.push({
+    id: uuidv4(),
     task: event.target.elements.enterToDo.value,
     completion: false
   });
