@@ -7,17 +7,19 @@ const generateInitialDOM = function() {
   }
 };
 
-// const seedTodos = function(toDos) {
-//   toDos.push({
-//     id: uuidv4(),
-//     task: "Finish the fight - get into the tech industry.",
-//     completion: true
-//   });
-// };
+const seedTodos = function(toDos) {
+  toDos.push({
+    id: uuidv4(),
+    task: "Finish the fight - get into the tech industry.",
+    completion: true
+  });
+};
 
 const renderToDos = function(toDos, filters) {
   const filteredTodos = toDos.filter(function(element) {
-    return element.task.toLowerCase().includes(filters.searchText.toLowerCase());
+    return element.task
+      .toLowerCase()
+      .includes(filters.searchText.toLowerCase());
   });
 
   document.querySelector("#toDos").innerHTML = ""; // this clears the div after every subsquent key stroke
@@ -32,24 +34,6 @@ const renderToDos = function(toDos, filters) {
   });
 };
 
-const renderUnfilteredTodos = function(toDoObject) {
-  const newDiv = document.createElement("div");
-  const newElem = document.createElement("span");
-  const newButton = document.createElement("button");
-  newButton.textContent = "x";
-  newElem.textContent = toDoObject.task;
-  newDiv.appendChild(newButton);
-  newDiv.appendChild(newElem);
-  document.querySelector("#toDos").appendChild(newDiv);
-  saveToDos(toDos)
-  newButton.addEventListener('click', function() {
-    removeTodoTask(toDoObject.id);
-    saveToDos(toDos)
-    renderToDos(toDos, filters);
-  })
-  return;
-};
-
 const renderFilteredTodos = function(toDos) {
   if (toDos.completion != filters.hideFilter) {
     renderUnfilteredTodos(toDos);
@@ -58,14 +42,48 @@ const renderFilteredTodos = function(toDos) {
   }
 };
 
+const renderUnfilteredTodos = function(toDoObject) {
+  const newInput = document.createElement("input");
+  const newLabel = document.createElement("label");
+  const newDiv = document.createElement("div");
+  const newElem = document.createElement("span");
+  const newButton = document.createElement("button");
+
+  newInput.setAttribute("type", "checkbox");
+  newButton.textContent = "x";
+  newElem.textContent = toDoObject.task;
+
+  newDiv.appendChild(newButton);
+  newDiv.appendChild(newElem);
+  newLabel.appendChild(newInput);
+  newDiv.appendChild(newLabel);
+
+  document.querySelector("#toDos").appendChild(newDiv);
+  saveToDos(toDos);
+
+  newButton.addEventListener("click", function() {
+    removeTodoTask(toDoObject.id);
+    saveToDos(toDos);
+    renderToDos(toDos, filters);
+  });
+
+  newLabel.addEventListener("change", function(e) {
+    let finder = toDos.find(e => e.id === toDoObject.id);
+    finder.completion = e.target.checked;
+    saveToDos(toDos);
+  });
+
+  return;
+};
+
 const removeTodoTask = function(taskToRemove) {
   let finder = toDos.find(e => e.id === taskToRemove);
   let i = toDos.indexOf(finder);
-  if(i != -1) {
+  if (i != -1) {
     toDos.splice(i, 1);
   }
-  return
-}
+  return;
+};
 
 const submitToDos = function() {
   toDos.push({
@@ -77,8 +95,8 @@ const submitToDos = function() {
 
 const saveToDos = function() {
   localStorage.setItem("toDos", JSON.stringify(toDos)); // this is where the user input gets inputed into simple storage
-}
+};
 
-saveToDos(toDos)
+seedTodos(toDos);
 generateInitialDOM();
 renderToDos(toDos, filters);
