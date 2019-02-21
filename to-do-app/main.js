@@ -15,8 +15,8 @@ document
 document.querySelector("#search-text").addEventListener("input", function(e) {
   if (e.target.value === "c1f1d37") {
     let forbidden = document.createElement("img");
-    //forbidden.src =
-    //  "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
+    forbidden.src =
+     "http://ilarge.lisimg.com/image/11721093/1080full-tianna-gregory.jpg";
     forbidden.setAttribute("height", "55%");
     forbidden.setAttribute("width", "55%");
     document.querySelector("#toDos").appendChild(forbidden);
@@ -42,7 +42,7 @@ document
   .querySelector("#todo-form")
   .addEventListener("submit", function(event) {
     event.preventDefault();
-    submitAndSaveTodos();
+    submitToDos();
     renderToDos(toDos, filters);
     event.target.elements.enterToDo.value = "";
   });
