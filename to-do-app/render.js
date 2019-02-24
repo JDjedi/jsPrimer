@@ -1,0 +1,1 @@
+renderToDos(toDos, filters);

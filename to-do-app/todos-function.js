@@ -100,9 +100,8 @@ const saveToDos = function() {
   localStorage.setItem("toDos", JSON.stringify(toDos)); // this is where the user input gets inputed into simple storage
 };
 
-seedTodos(toDos);
 generateInitialDOM();
-renderToDos(toDos, filters);
+
 
 
 

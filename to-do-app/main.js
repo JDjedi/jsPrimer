@@ -50,4 +50,3 @@ document
     location.assign(`/edit.html#${toDos[toDos.length - 1].id}`);
   });
 
-
