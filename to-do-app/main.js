@@ -44,6 +44,10 @@ document
     event.preventDefault();
     submitToDos();
     renderToDos(toDos, filters);
+    //debugger
+
     event.target.elements.enterToDo.value = "";
+    location.assign(`/edit.html#${toDos[toDos.length - 1].id}`);
   });
+
 

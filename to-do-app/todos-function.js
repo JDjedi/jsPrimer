@@ -46,17 +46,20 @@ const renderUnfilteredTodos = function(toDoObject) {
   const newInput = document.createElement("input");
   const newLabel = document.createElement("label");
   const newDiv = document.createElement("div");
-  const newElem = document.createElement("span");
+  const newSpan = document.createElement("span");
   const newButton = document.createElement("button");
+  const newLink = document.createElement("a");
 
+  newLink.setAttribute("href", `/edit.html#${toDoObject.id}`);
   newInput.setAttribute("type", "checkbox");
   newButton.textContent = "x";
-  newElem.textContent = toDoObject.task;
+  newLink.textContent = toDoObject.task;
 
   newDiv.appendChild(newButton);
-  newDiv.appendChild(newElem);
+  newDiv.appendChild(newSpan);
   newLabel.appendChild(newInput);
   newDiv.appendChild(newLabel);
+  newSpan.appendChild(newLink);
 
   document.querySelector("#toDos").appendChild(newDiv);
   saveToDos(toDos);
@@ -100,3 +103,7 @@ const saveToDos = function() {
 seedTodos(toDos);
 generateInitialDOM();
 renderToDos(toDos, filters);
+
+
+
+
