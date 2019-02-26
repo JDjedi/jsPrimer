@@ -12,3 +12,11 @@ if (matchedToDo === undefined) {
 
 
 document.querySelector("#edit-todo-body").value = matchedToDo.task
+
+// document.querySelector("#edit-container").addEventListener("input", function(event) {
+//     event.preventDefault();
+//     matchedToDo.task = event.target.task;
+//     saveToDos();
+// });
+
+
