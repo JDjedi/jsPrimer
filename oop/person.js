@@ -6,7 +6,18 @@ const Person = function (firstName, lastName, age) { // constructor functions us
 	this.age = age 
 }
 
-const me  = new Person("Jonathan", "Diaz", 29); // constructor functions use a capital letter!
+Person.prototype.getBio = function() {
+	return `${this.firstName} ${this.lastName} - ${this.age}`
+};
 
-console.log(me);
+Person.prototype.setPerson = function(firstName, lastName, age) {
+	this.firstName = firstName
+	this.lastName = lastName
+	this.age = lastName
+};
+
+const me  = new Person(); // constructor functions use a capital letter!
+me.setPerson("Jonathan", "Diaz", 29)
+me.getBio();
+
 
