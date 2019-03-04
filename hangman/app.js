@@ -1,11 +1,11 @@
 
+
 const Hangman = function(wordToGuess, numberOfGuesses) {
 	this.wordToGuess = wordToGuess.toLowerCase().split("")
 	this.numberOfGuesses = numberOfGuesses
-	let gameGuess = null
 }
 
-Hangman.prototype.startGame = function(userGues) {
+Hangman.prototype.startGame = function(userGuess) {
 	let answerPiece = ''
 	this.wordToGuess.forEach(function(e) {
 		if (userGuess.includes(e)) {
@@ -13,6 +13,7 @@ Hangman.prototype.startGame = function(userGues) {
 		} else {
 			answerPiece += '*'
 		}
+
 	})
 	return answerPiece
 }
@@ -33,14 +34,13 @@ Hangman.prototype.takeAGuess = function(userGuess) {
 			console.log("Something else went wrong LOL")
 		}
 	})
-	this.gameGuess = guesses
-	return this.gameGuess
+	return guesses
 }
 
 
 const game = new Hangman("Alexander", 3);
 game.takeAGuess(["q", "L", "t"])
-game.startGame()
+game.startGame(guesses)
 
 // window.addEventListener('keypress', function(e) {
 // 	let guess = String.fromCharCode(e.charCode);
