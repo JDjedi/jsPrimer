@@ -1,23 +1,50 @@
-'use strict'
+// Prototypal Inheritance
+// myPerson --> Employee.prototype --> Person.prototype --> Object.prototype --> Null
 
-const Person = function (firstName, lastName, age) { // constructor functions use a capital letter!
-	this.firstName = firstName
-	this.lastName = lastName
-	this.age = age 
+class Person {
+	constructor(firstName, lastName, age, likes = []) {
+		this.firstName = firstName,
+		this.lastName = lastName,
+		this.age = age,
+		this.likes = likes
+	}
+
+	getBio() {
+		let bio = `Name: ${this.firstName} ${this.lastName}\nAge: ${this.age}\n`
+		let age = `He is ${this.age}`
+
+		this.likes.forEach((like) => {
+			bio += `${this.firstName} likes ${like}\n`
+		})
+
+		return bio
+	}
+
+	setName(fullName) {
+		const names = fullName.split(' ')
+		this.firstName = names[0]
+		this.lastName = names[1]
+	}
 }
 
-Person.prototype.getBio = function() {
-	return `${this.firstName} ${this.lastName} - ${this.age}`
-};
+class Employee extends Person { // subclass of Person
+	constructor(firstName, lastName, age, position, likes = []) { 
+		super(firstName, lastName, age, likes)// inside of subclass you must envoke parents constructor fucntion via super() for those variables
+		this.position = position
+	}
 
-Person.prototype.setPerson = function(firstName, lastName, age) {
-	this.firstName = firstName
-	this.lastName = lastName
-	this.age = lastName
-};
+	getBio() {
+		return `${this.firstName} is a ${this.position}`
+	}
+}
 
-const me  = new Person(); // constructor functions use a capital letter!
-me.setPerson("Jonathan", "Diaz", 29)
-me.getBio();
+
+
+
+
+
+const me = new Employee('Jonathan', 'Diaz', 29, "Software Engineer", ['Biking', 'Programming', 'Politics', 'History', 'Working Out'])
+console.log(me.getBio())
+
 
 
