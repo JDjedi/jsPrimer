@@ -1,3 +1,5 @@
+
+
 // Prototypal Inheritance
 // myPerson --> Employee.prototype --> Person.prototype --> Object.prototype --> Null
 
@@ -20,14 +22,14 @@ class Person {
 		return bio
 	}
 
-	setName(fullName) {
+	set fullName(fullName) {
 		const names = fullName.split(' ')
 		this.firstName = names[0]
 		this.lastName = names[1]
 	}
 }
 
-class Employee extends Person { // subclass of Person
+class Employee extends Person { // subclass of Person, if methods are the same, the most recent class overides the parents!
 	constructor(firstName, lastName, age, position, likes = []) { 
 		super(firstName, lastName, age, likes)// inside of subclass you must envoke parents constructor fucntion via super() for those variables
 		this.position = position
@@ -38,13 +40,9 @@ class Employee extends Person { // subclass of Person
 	}
 }
 
-
-
-
-
-
 const me = new Employee('Jonathan', 'Diaz', 29, "Software Engineer", ['Biking', 'Programming', 'Politics', 'History', 'Working Out'])
-console.log(me.getBio())
 
+me.fullName = "Indiana Jones"
 
+console.log(me);
 
