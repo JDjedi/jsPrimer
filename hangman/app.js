@@ -15,11 +15,15 @@ window.addEventListener('keypress', (e) => {
 })
 
 
-getPuzzle((error, puzzle) => {
+getPuzzle((error, puzzle) => { // Async code get this to run and return callback value when it is finshed!
 	if (error) {
 		console.log(`An error occoured ${error}`)
 	} else {
-		console.log(puzzle)
+		console.log(puzzle )
 	}
 })
+
+// below is for testing purposes only, demonstrating callback async
+console.log("Herro")	// this will fire before the callback above finishes its work, thats why it logs before 
+						// the code above returns its value
 
