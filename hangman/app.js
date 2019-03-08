@@ -3,7 +3,7 @@
 const puzzleEl = document.querySelector('#puzzle')
 const guessesEl = document.querySelector('#guesses')
 const game1 = new Hangman('Alexander', 7)
-const countryCode = "US"
+const countryCode = "MX"
 
 puzzleEl.textContent = game1.puzzle
 guessesEl.textContent = game1.statusMessage
@@ -16,21 +16,18 @@ window.addEventListener('keypress', (e) => {
 })
 
 
-getPuzzle((error, puzzle) => { // Async code get this to run and return callback value when it is finshed!
-	if (error) {
-		console.log(`An error occoured ${error}`)
-	} else {
-		console.log(puzzle)
-	}
+getPuzzle(7).then((puzzle) => {			// this is the syntax, .then->, for when things go right, only!
+	console.log(puzzle)
+}, (err) => {						// this is what you put for the reject handler, from "," on
+	console.log(err)
 })
 
-getCountry((error, countryCode, country) => { // (error, country), this === (callback over on requests.js!)
-	if (error) {
-		console.log(`An error occoured ${error}`)
-	} else {
-		console.log(country)
-	}
+getCountry(countryCode).then((country) => {			// this is the syntax, .then->, for when things go right, only!
+	console.log(country)
+}, (err) => {						// this is what you put for the reject handler, from "," on
+	console.log(err)
 })
+
 
 
 // below is for testing purposes only, demonstrating callback async
