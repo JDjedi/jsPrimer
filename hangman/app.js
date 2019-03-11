@@ -16,16 +16,16 @@ window.addEventListener('keypress', (e) => {
 })
 
 
-getPuzzle(7).then((puzzle) => {			// this is the syntax, .then->, for when things go right, only!
-	console.log(puzzle)
-}, (err) => {						// this is what you put for the reject handler, from "," on
-	console.log(err)
+getPuzzle(3).then((data) => {			// this is the syntax, .then->, for when things go right, only!
+	console.log(data.puzzle)			// you can return anything you like from the chain, not just other promise callbacks
+}).catch((err) => {
+	console.log(`Error: ${err}`)
 })
 
-getCountry(countryCode).then((country) => {			// this is the syntax, .then->, for when things go right, only!
-	console.log(country)
-}, (err) => {						// this is what you put for the reject handler, from "," on
-	console.log(err)
+getCountry(countryCode).then((data) => {			// this is the syntax, .then->, for when things go right, only!
+	console.log(data.name)
+}).catch((err) => {						// this is what you put for the reject handler, from "," on
+	console.log(`Error: ${err}`)
 })
 
 
