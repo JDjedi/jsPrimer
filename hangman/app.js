@@ -17,7 +17,7 @@ window.addEventListener('keypress', (e) => {
 
 
 getPuzzle(3).then((data) => {			// this is the syntax, .then->, for when things go right, only!
-	console.log(data.puzzle)			// you can return anything you like from the chain, not just other promise callbacks
+	console.log(data)			// you can return anything you like from the chain, not just other promise callbacks
 }).catch((err) => {
 	console.log(`Error: ${err}`)
 })

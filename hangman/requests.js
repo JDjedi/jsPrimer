@@ -65,16 +65,18 @@
 // })
 
 
+// *********************************  old functionality ********************************* 
+
 // same as above except using the fetch method pattern
-const getPuzzle = (wordCount) => {
-	return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`, {}).then((response) => {
-		if (response.status === 200) {
-			return response.json()
-		} else {
-			throw new Error('There was an error in retrieving the data')
-		}
-	})
-}
+// const getPuzzle = (wordCount) => {
+// 	return fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`, {}).then((response) => {
+// 		if (response.status === 200) {
+// 			return response.json()
+// 		} else {
+// 			throw new Error('There was an error in retrieving the data')
+// 		}
+// 	})
+// }
 
 const getCountry = (countryCode) => {
 	return fetch('https://restcountries.eu/rest/v2/all', {}).then((response) => {
@@ -89,9 +91,17 @@ const getCountry = (countryCode) => {
 
 }
 
+// async-await functionality 
+const getPuzzle = async (wordCount) => {
+	const response = await fetch(`http://puzzle.mead.io/puzzle?wordCount=${wordCount}`)
 
-
-
+	if (response.status === 200) {
+		const data = await response.json()
+		return data.puzzle
+	} else {
+		throw new Error('There was an error in retrieving the data')
+	}
+}
 
 
 
